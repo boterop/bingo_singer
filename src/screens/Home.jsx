@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-const Home = ({navigation}) => {
-	const goTo = (page) => {
-		navigation.navigate(page)
-	}
+const Home = ({ navigation }) => {
+	const goTo = page => {
+		navigation.navigate(page);
+	};
 
 	return (
 		<View>

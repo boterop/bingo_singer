@@ -1,0 +1,19 @@
+name: CI
+on:
+  pull_request:
+    types: [closed, review_requested, ready_for_review, synchronize, opened]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16.10.0
+      - name: Install Dependencies
+        run: yarn
+      - name: Check Format
+        run: yarn check-format
+      - name: Run Tests
+        run: yarn test
