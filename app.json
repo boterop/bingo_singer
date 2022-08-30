@@ -1,7 +1,7 @@
 {
 	"expo": {
-		"name": "b_music",
-		"slug": "b_music",
+		"name": "expo_project_base",
+		"slug": "Expo Project Base",
 		"version": "0.1.0",
 		"orientation": "portrait",
 		"icon": "./assets/icon.png",

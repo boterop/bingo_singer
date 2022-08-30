@@ -6,7 +6,7 @@ const { Navigator, Screen } = createBottomTabNavigator();
 
 const NavigationTab = () => (
 	<Navigator>
-		<Screen name='B Music' component={Home} />
+		<Screen name='home' component={Home} />
 	</Navigator>
 );
 

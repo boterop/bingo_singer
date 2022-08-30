@@ -5,8 +5,8 @@ import { Home } from '../screens';
 const { Navigator, Screen } = createNativeStackNavigator();
 
 const NavigationStack = () => (
-	<Navigator initialRouteName='B Music'>
-		<Screen name='B Music' component={Home} />
+	<Navigator initialRouteName='home'>
+		<Screen name='home' component={Home} />
 	</Navigator>
 );
 
