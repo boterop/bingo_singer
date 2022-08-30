@@ -6,8 +6,11 @@ class Bingo:
         self.numbers = []
         self.max_numbers = self.get_max_numbers(table)
     
-    def get_max_numbers(table):
-        return 50
+    def get_max_numbers(self, table):
+        result = 0
+        for (l, numbers) in table:
+            result = result + len(numbers)
+        return result
 
     def get_number(self):
         if len(self.numbers) >= self.max_numbers:
