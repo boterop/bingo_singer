@@ -11,7 +11,6 @@ bingo = Bingo([
 
 def update():
     (letter, number) = bingo.get_number()
-    print(bingo.get_done())
     return letter+" "+number
 
 ui = View(300, 200)
