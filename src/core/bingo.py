@@ -4,13 +4,17 @@ class Bingo:
     def __init__(self, table):
         self.table = table
         self.numbers = []
-        self.max_numbers = self.get_max_numbers(table)
-    
-    def get_max_numbers(self, table):
-        result = 0
-        for (l, numbers) in table:
-            result = result + len(numbers)
-        return result
+        self.max_numbers = 0
+        self.table_headings = []
+        self.table_values = []
+        for (letter, numbers) in self.table:
+            self.table_headings.append(letter)
+            self.max_numbers = self.max_numbers + len(numbers)
+            self.table_values.append([*numbers])
+        self.table_values = self.transpose(self.table_values)
+
+    def transpose(self, table):
+        return [[table[j][i] for j in range(len(table))] for i in range(len(table[0]))]
 
     def get_number(self):
         if len(self.numbers) >= self.max_numbers:
@@ -22,6 +26,13 @@ class Bingo:
 
     def get_done(self):
         return self.numbers
+
+    def get_table(self):
+        return (
+            self.table_headings,
+            self.table_values,
+            int(self.max_numbers / len(self.table_headings))
+        )
     
     def is_valid(self, number):
         if number in self.numbers:
