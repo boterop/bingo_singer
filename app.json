@@ -1,9 +1,9 @@
 {
 	"expo": {
-		"name": "expo_project_base",
-		"slug": "Expo Project Base",
+		"name": "bingo_singer",
+		"slug": "Bingo Singer",
 		"version": "0.1.0",
-		"orientation": "portrait",
+		"orientation": "landscape",
 		"icon": "./assets/icon.png",
 		"userInterfaceStyle": "light",
 		"splash": {
