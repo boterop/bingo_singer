@@ -14,17 +14,28 @@ const header = letters => (
 	</DataTable.Header>
 );
 
-const content = (letters, numbers) => {
+const isDone = (done, key, value) =>
+	done[key] === undefined ? true : !done[key].includes(value);
+
+const content = (letters, numbers, done) => {
 	const values = [];
 	const end = numbers[letters[0]].length;
 	let index = 0;
 
 	while (index < end) {
 		values.push(
-			<DataTable.Row key={index} style={[styles.tableRow, {top: index*20 + 48}]}>
+			<DataTable.Row
+				key={index}
+				style={[styles.tableRow, { top: index * 20 + 48 }]}>
 				{letters.map(key => (
 					<DataTable.Cell style={styles.tableCell}>
-						<Text includeFontPadding={false} style={styles.cell}>
+						<Text
+							includeFontPadding={false}
+							style={
+								isDone(done, key, numbers[key][index])
+									? styles.cell
+									: styles.cellDone
+							}>
 							{numbers[key][index]}
 						</Text>
 					</DataTable.Cell>
@@ -41,7 +52,7 @@ const Table = ({ letters, board, done }) => {
 	return (
 		<DataTable style={styles.container}>
 			{header(letters)}
-			{content(letters, board)}
+			{content(letters, board, done)}
 		</DataTable>
 	);
 };
@@ -57,7 +68,7 @@ const styles = StyleSheet.create({
 		borderBottomWidth: 0,
 		overflow: 'hidden',
 		position: 'absolute',
-		width: "100%",
+		width: '100%',
 	},
 	tableCell: {
 		justifyContent: 'center',
@@ -73,6 +84,10 @@ const styles = StyleSheet.create({
 	},
 	cell: {
 		fontSize: 15,
+	},
+	cellDone: {
+		fontSize: 15,
+		color: '#ff0000',
 	},
 	tableHeader: {
 		backgroundColor: '#ff0',

@@ -9,6 +9,7 @@ const Home = ({ navigation }) => {
 	const [looping, setLooping] = useState(false);
 	const [gameOver, setGameOver] = useState(false);
 	const [done, setDone] = useState({});
+	const [table, setTable] = useState(null);
 	const isInitialMount = useRef(true);
 	const seconds = 6;
 
@@ -33,6 +34,13 @@ const Home = ({ navigation }) => {
 	const start = () => {
 		if (looping && !gameOver) {
 			const result = getNextNumber();
+			setTable(
+				<Table
+					done={done}
+					board={BoardService.getBoard()}
+					letters={BoardService.getLetters()}
+				/>,
+			);
 			SpeechService.speak(result);
 		}
 	};
@@ -71,13 +79,7 @@ const Home = ({ navigation }) => {
 
 	return (
 		<View style={Styles.inline}>
-			<View style={Styles.table}>
-				<Table
-					done={done}
-					board={BoardService.getBoard()}
-					letters={BoardService.getLetters()}
-				/>
-			</View>
+			<View style={Styles.table}>{table}</View>
 			<View style={Styles.container}>
 				<StatusBar hidden />
 				<View>
