@@ -18,7 +18,7 @@ const Home = ({ navigation }) => {
 	useEffect(() => {
 		if (isInitialMount.current) {
 			isInitialMount.current = false;
-			SpeechService.speak("");
+			SpeechService.speak('');
 		} else {
 			if (!looping) {
 				clearTimeout(timeoutId);
