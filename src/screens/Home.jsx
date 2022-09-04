@@ -10,14 +10,20 @@ const Home = ({ navigation }) => {
 	const [gameOver, setGameOver] = useState(false);
 	const [done, setDone] = useState({});
 	const [table, setTable] = useState(null);
+	const [timeoutId, setTimeoutId] = useState(null);
+
 	const isInitialMount = useRef(true);
 	const seconds = 6;
 
 	useEffect(() => {
 		if (isInitialMount.current) {
 			isInitialMount.current = false;
+			SpeechService.speak('');
 		} else {
-			setTimeout(() => start(), seconds * 1000);
+			if (!looping) {
+				clearTimeout(timeoutId);
+			}
+			setTimeoutId(setTimeout(() => start(), seconds * 1000));
 		}
 	}, [looping, result]);
 
@@ -69,7 +75,7 @@ const Home = ({ navigation }) => {
 
 			addDone(key, result);
 
-			return key + '.' + result;
+			return key + '..' + result;
 		} else {
 			const isGameOver = BoardService.checkGameOver(done);
 			setGameOver(isGameOver);
