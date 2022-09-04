@@ -14,15 +14,29 @@ let board = {
 	O: getRange(61, 75),
 };
 
-let done = { B: [], I: [], N: [], G: [], O: [] };
-
 const BoardService = {
 	setBoard: table => (board = table),
 	getBoard: () => board,
 	getLetters: () => Object.keys(board),
 	getRange,
-	getDone: () => done,
-	addDone: (key, value) => board[key].push(value),
+	checkGameOver: dones => {
+		const letters = Object.keys(board);
+
+		for (let i = 0; i < letters.length; i++) {
+			const list = dones[letters[i]];
+			const boardList = board[letters[i]];
+
+			if (list === undefined) {
+				return false;
+			}
+
+			if (list.length !== boardList.length) {
+				return false;
+			}
+		}
+
+		return true;
+	},
 };
 
 export default BoardService;

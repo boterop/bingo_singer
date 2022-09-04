@@ -6,6 +6,8 @@ import { Styles } from '../styles';
 const Home = ({ navigation }) => {
 	const [result, setResult] = useState('');
 	const [looping, setLooping] = useState(false);
+	const [gameOver, setGameOver] = useState(false);
+	const [done, setDone] = useState({});
 	const isInitialMount = useRef(true);
 	const seconds = 6;
 
@@ -17,17 +19,37 @@ const Home = ({ navigation }) => {
 		}
 	}, [looping, result]);
 
+	useEffect(() => {
+		if (gameOver) {
+			setResult('END');
+		}
+	}, [gameOver]);
+
 	const goTo = page => {
 		navigation.navigate(page);
 	};
 
 	const start = () => {
-		console.log(looping);
 		if (looping) {
-			const result = getNextNumber();
-			SpeechService.speak(result);
+			if (!gameOver) {
+				const result = getNextNumber();
+				SpeechService.speak(result);
+			}
 		}
 	};
+
+	const addDone = (key, value) => {
+		const update = done;
+		if (done[key] === undefined) {
+			update[key] = [value];
+		} else {
+			update[key].push(value);
+		}
+		setDone(update);
+	};
+
+	const isValid = (key, value) =>
+		done[key] === undefined ? true : !done[key].includes(value);
 
 	const getNextNumber = () => {
 		const letters = BoardService.getLetters();
@@ -35,9 +57,17 @@ const Home = ({ navigation }) => {
 		const list = BoardService.getBoard()[key];
 		const result = list[Random(0, list.length)];
 
-		setResult(key + '-' + result);
+		if (isValid(key, result)) {
+			setResult(key + '-' + result);
 
-		return key + '.' + result;
+			addDone(key, result);
+
+			return key + '.' + result;
+		} else {
+			const isGameOver = BoardService.checkGameOver(done);
+			setGameOver(isGameOver);
+			return isGameOver ? true : getNextNumber();
+		}
 	};
 
 	return (
