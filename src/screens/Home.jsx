@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, StatusBar, Button } from 'react-native';
+import { Table } from '../components';
 import { BoardService, Random, SpeechService } from '../services';
 import { Styles } from '../styles';
 
@@ -8,6 +9,7 @@ const Home = ({ navigation }) => {
 	const [looping, setLooping] = useState(false);
 	const [gameOver, setGameOver] = useState(false);
 	const [done, setDone] = useState({});
+	const [table, setTable] = useState(null);
 	const isInitialMount = useRef(true);
 	const seconds = 6;
 
@@ -32,6 +34,13 @@ const Home = ({ navigation }) => {
 	const start = () => {
 		if (looping && !gameOver) {
 			const result = getNextNumber();
+			setTable(
+				<Table
+					done={done}
+					board={BoardService.getBoard()}
+					letters={BoardService.getLetters()}
+				/>,
+			);
 			SpeechService.speak(result);
 		}
 	};
@@ -69,13 +78,18 @@ const Home = ({ navigation }) => {
 	};
 
 	return (
-		<View style={Styles.container}>
-			<StatusBar hidden />
-			<Text style={Styles.text}>{result}</Text>
-			<Button
-				onPress={() => setLooping(!looping)}
-				title={looping ? 'PAUSE' : 'START'}
-			/>
+		<View style={Styles.inline}>
+			<View style={Styles.table}>{table}</View>
+			<View style={Styles.container}>
+				<StatusBar hidden />
+				<View>
+					<Text style={Styles.text}>{result}</Text>
+					<Button
+						onPress={() => setLooping(!looping)}
+						title={looping ? 'PAUSE' : 'START'}
+					/>
+				</View>
+			</View>
 		</View>
 	);
 };

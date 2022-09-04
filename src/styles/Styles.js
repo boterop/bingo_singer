@@ -5,11 +5,19 @@ const Styles = StyleSheet.create({
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#ffff',
+	},
+	inline: {
+		flexDirection: 'row',
+		width: '100%',
+		height: '100%',
 	},
 	text: {
 		color: '#000000',
-		fontSize: 200,
+		fontSize: 150,
+	},
+	table: {
+		width: '35%',
+		height: '100%',
 	},
 	box: {
 		display: 'flex',
