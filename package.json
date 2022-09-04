@@ -6,6 +6,7 @@
 		"start": "expo start",
 		"clear-cache": "expo start -c",
 		"android": "expo start --android",
+		"build-apk": "eas build -p android",
 		"ios": "expo start --ios",
 		"web": "expo start --web",
 		"format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}'",
