@@ -5,7 +5,6 @@ const Styles = StyleSheet.create({
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#ffff',
 	},
 	inline: {
 		flexDirection: 'row',
@@ -17,7 +16,7 @@ const Styles = StyleSheet.create({
 		fontSize: 150,
 	},
 	table: {
-		width: '30%',
+		width: '35%',
 		height: '100%',
 	},
 	box: {

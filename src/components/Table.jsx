@@ -16,15 +16,17 @@ const header = letters => (
 
 const content = (letters, numbers) => {
 	const values = [];
-	let index = 0;
 	const end = numbers[letters[0]].length;
+	let index = 0;
 
 	while (index < end) {
 		values.push(
-			<DataTable.Row style={styles.tableRow}>
+			<DataTable.Row key={index} style={[styles.tableRow, {top: index*20 + 48}]}>
 				{letters.map(key => (
 					<DataTable.Cell style={styles.tableCell}>
-						<Text style={styles.cell}>{numbers[key][index]}</Text>
+						<Text includeFontPadding={false} style={styles.cell}>
+							{numbers[key][index]}
+						</Text>
 					</DataTable.Cell>
 				))}
 			</DataTable.Row>,
@@ -50,28 +52,30 @@ const styles = StyleSheet.create({
 	},
 	tableTitle: {
 		justifyContent: 'center',
-		borderRightWidth: 0.2,
-		borderLeftWidth: 0.2,
 	},
 	tableRow: {
-		justifyContent: 'center',
+		borderBottomWidth: 0,
+		overflow: 'hidden',
+		position: 'absolute',
+		width: "100%",
 	},
 	tableCell: {
 		justifyContent: 'center',
 		borderRightWidth: 0.2,
 		borderLeftWidth: 0.2,
+		borderBottomWidth: 0.2,
+		borderTopWidth: 0.2,
+		height: 20,
 	},
 	title: {
 		fontWeight: 'bold',
-		textAlign: 'center',
 		fontSize: 20,
 	},
 	cell: {
-		textAlign: 'center',
-		fontSize: 13,
+		fontSize: 15,
 	},
 	tableHeader: {
-		backgroundColor: '#DCDCDC',
+		backgroundColor: '#ff0',
 		borderRadius: 45,
 	},
 });
