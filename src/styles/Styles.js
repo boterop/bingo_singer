@@ -7,9 +7,18 @@ const Styles = StyleSheet.create({
 		justifyContent: 'center',
 		backgroundColor: '#ffff',
 	},
+	inline: {
+		flexDirection: 'row',
+		width: '100%',
+		height: '100%',
+	},
 	text: {
 		color: '#000000',
-		fontSize: 200,
+		fontSize: 150,
+	},
+	table: {
+		width: '30%',
+		height: '100%',
 	},
 	box: {
 		display: 'flex',

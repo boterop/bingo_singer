@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, StatusBar, Button } from 'react-native';
+import { Table } from '../components';
 import { BoardService, Random, SpeechService } from '../services';
 import { Styles } from '../styles';
 
@@ -69,13 +70,24 @@ const Home = ({ navigation }) => {
 	};
 
 	return (
-		<View style={Styles.container}>
-			<StatusBar hidden />
-			<Text style={Styles.text}>{result}</Text>
-			<Button
-				onPress={() => setLooping(!looping)}
-				title={looping ? 'PAUSE' : 'START'}
-			/>
+		<View style={Styles.inline}>
+			<View style={Styles.table}>
+				<Table
+					done={done}
+					board={BoardService.getBoard()}
+					letters={BoardService.getLetters()}
+				/>
+			</View>
+			<View style={Styles.container}>
+				<StatusBar hidden />
+				<View>
+					<Text style={Styles.text}>{result}</Text>
+					<Button
+						onPress={() => setLooping(!looping)}
+						title={looping ? 'PAUSE' : 'START'}
+					/>
+				</View>
+			</View>
 		</View>
 	);
 };
