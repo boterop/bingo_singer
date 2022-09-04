@@ -30,11 +30,9 @@ const Home = ({ navigation }) => {
 	};
 
 	const start = () => {
-		if (looping) {
-			if (!gameOver) {
-				const result = getNextNumber();
-				SpeechService.speak(result);
-			}
+		if (looping && !gameOver) {
+			const result = getNextNumber();
+			SpeechService.speak(result);
 		}
 	};
 
