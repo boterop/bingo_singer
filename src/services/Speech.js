@@ -3,7 +3,7 @@ import * as Speech from 'expo-speech';
 const speechOptions = {
 	language: 'es-CO',
 	pitch: 1,
-	rate: 0.5,
+	rate: 1,
 };
 
 const SpeechService = {
