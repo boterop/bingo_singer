@@ -22,8 +22,8 @@ const Config = props => {
 
 	return (
 		<View style={Styles.container}>
-			<ConfigIo title="Game speed:" speed={speed} setSpeed={setSpeed} />
-			<ConfigIo title="Voice speed:" speed={rate} setSpeed={setRate} />
+			<ConfigIo title='Game speed:' speed={speed} setSpeed={setSpeed} />
+			<ConfigIo title='Voice speed:' speed={rate} setSpeed={setRate} />
 		</View>
 	);
 };
