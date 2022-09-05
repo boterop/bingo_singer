@@ -15,8 +15,11 @@ const Config = props => {
 			StorageService.retrieveData('speed').then(s => setSpeed(s));
 			StorageService.retrieveData('rate').then(r => setRate(r));
 		} else {
-			StorageService.storeData('speed', speed.toString());
-			StorageService.storeData('rate', rate.toString());
+			const s =
+				speed === undefined ? '6' : speed === '' ? '6' : speed.toString();
+			const r = rate === undefined ? '1' : rate === '' ? '1' : rate.toString();
+			StorageService.storeData('speed', s);
+			StorageService.storeData('rate', r);
 		}
 	}, [speed, rate]);
 

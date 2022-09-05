@@ -8,7 +8,7 @@ const SpeechService = {
 			speechOptions = {
 				language: 'es-CO',
 				pitch: 1,
-				rate: parseFloat(r),
+				rate: r === '' ? 1 : parseFloat(r),
 			};
 			Speech.speak(text, speechOptions);
 		});
