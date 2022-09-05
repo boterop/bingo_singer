@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { View } from 'react-native';
 import { Styles } from '../styles';
 import { StorageService } from '../services';
-import ConfigIo from '../components/ConfigIo';
+import { ConfigIo } from '../components';
 
 const Config = props => {
 	const [speed, setSpeed] = useState(0);
