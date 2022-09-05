@@ -5,7 +5,11 @@ import { Home } from '../screens';
 const { Navigator, Screen } = createDrawerNavigator();
 
 const NavigationDrawer = () => (
-	<Navigator>
+	<Navigator
+		initialRouteName='home'
+		screenOptions={{
+			headerShown: false,
+		}}>
 		<Screen name='home' component={Home} />
 	</Navigator>
 );
