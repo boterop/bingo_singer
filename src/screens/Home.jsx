@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, StatusBar, Button } from 'react-native';
+import { View, Text, StatusBar, Button, Pressable } from 'react-native';
 import { Table } from '../components';
 import { BoardService, Random, SpeechService } from '../services';
 import { Styles } from '../styles';
@@ -51,6 +51,15 @@ const Home = ({ navigation }) => {
 		}
 	};
 
+	const reset = () => {
+		setLooping(false);
+		setGameOver(false);
+		setResult('');
+		setDone({});
+		setTable(null);
+		setTimeoutId(null);
+	};
+
 	const addDone = (key, value) => {
 		const update = done;
 		if (done[key] === undefined) {
@@ -89,6 +98,9 @@ const Home = ({ navigation }) => {
 			<View style={Styles.container}>
 				<StatusBar hidden />
 				<View>
+					<Pressable style={Styles.resetButton} onPress={() => reset()}>
+						<Text style={Styles.resetButtonText}>RESET</Text>
+					</Pressable>
 					<Text style={Styles.text}>{result}</Text>
 					<Button
 						onPress={() => setLooping(!looping)}

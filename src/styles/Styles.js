@@ -19,6 +19,14 @@ const Styles = StyleSheet.create({
 		width: '35%',
 		height: '100%',
 	},
+	resetButton: {
+		backgroundColor: 'none',
+	},
+	resetButtonText: {
+		color: '#F5B65C',
+		fontWeight: 'bold',
+		textAlign: 'center',
+	},
 	box: {
 		display: 'flex',
 		paddingVertical: 2,
