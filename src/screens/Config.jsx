@@ -5,21 +5,25 @@ import { StorageService } from '../services';
 import { ConfigIo } from '../components';
 
 const Config = props => {
-	const [speed, setSpeed] = useState(0);
+	const [speed, setSpeed] = useState(6);
+	const [rate, setRate] = useState(1.0);
 	const isInitialMount = useRef(true);
 
 	useEffect(() => {
 		if (isInitialMount.current) {
 			isInitialMount.current = false;
 			StorageService.retrieveData('speed').then(s => setSpeed(s));
+			StorageService.retrieveData('rate').then(r => setRate(r));
 		} else {
-			StorageService.storeData('speed', speed);
+			StorageService.storeData('speed', speed.toString());
+			StorageService.storeData('rate', rate.toString());
 		}
-	}, [speed]);
+	}, [speed, rate]);
 
 	return (
 		<View style={Styles.container}>
-			<ConfigIo speed={speed} setSpeed={setSpeed} />
+			<ConfigIo title="Game speed:" speed={speed} setSpeed={setSpeed} />
+			<ConfigIo title="Voice speed:" speed={rate} setSpeed={setRate} />
 		</View>
 	);
 };
