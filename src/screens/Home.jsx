@@ -29,7 +29,6 @@ const Home = ({ navigation }) => {
 			if (!looping) {
 				clearTimeout(timeoutId);
 			}
-			console.log(seconds);
 			setTimeoutId(setTimeout(() => start(), seconds * 1000));
 		}
 	}, [looping, result]);
