@@ -1,7 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, StatusBar, Button, Pressable } from 'react-native';
 import { Table } from '../components';
-import { BoardService, Random, SpeechService } from '../services';
+import {
+	BoardService,
+	Random,
+	SpeechService,
+	StorageService,
+} from '../services';
 import { Styles } from '../styles';
 
 const Home = ({ navigation }) => {
@@ -11,11 +16,12 @@ const Home = ({ navigation }) => {
 	const [done, setDone] = useState({});
 	const [table, setTable] = useState(null);
 	const [timeoutId, setTimeoutId] = useState(null);
+	const [seconds, setSeconds] = useState(6);
 
 	const isInitialMount = useRef(true);
-	const seconds = 6;
 
 	useEffect(() => {
+		StorageService.retrieveData('speed').then(s => setSeconds(s));
 		if (isInitialMount.current) {
 			isInitialMount.current = false;
 			SpeechService.speak('');
@@ -23,6 +29,7 @@ const Home = ({ navigation }) => {
 			if (!looping) {
 				clearTimeout(timeoutId);
 			}
+			console.log(seconds);
 			setTimeoutId(setTimeout(() => start(), seconds * 1000));
 		}
 	}, [looping, result]);
