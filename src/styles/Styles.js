@@ -63,6 +63,9 @@ const Styles = StyleSheet.create({
 		paddingRight: 25,
 		height: 20,
 	},
+	configInline: {
+		flexDirection: 'row',
+	},
 });
 
 export default Styles;
