@@ -21,7 +21,7 @@ const Home = ({ navigation }) => {
 	const isInitialMount = useRef(true);
 
 	useEffect(() => {
-		StorageService.retrieveData('speed').then(s => setSeconds(s));
+		StorageService.retrieveData('speed').then(s => setSeconds(s | 6));
 		if (isInitialMount.current) {
 			isInitialMount.current = false;
 			SpeechService.speak('');
