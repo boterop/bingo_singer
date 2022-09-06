@@ -44,10 +44,6 @@ const Home = ({ navigation }) => {
 		StorageService.retrieveData('speed').then(s => {
 			if (s === undefined || s === '') {
 				StorageService.storeData('speed', '6');
-			}
-		});
-		StorageService.retrieveData('rate').then(r => {
-			if (r === undefined || r === '') {
 				StorageService.storeData('rate', '1');
 			}
 		});
