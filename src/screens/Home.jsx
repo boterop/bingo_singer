@@ -25,6 +25,7 @@ const Home = ({ navigation }) => {
 		if (isInitialMount.current) {
 			isInitialMount.current = false;
 			SpeechService.speak('');
+			setFirstValues();
 		} else {
 			if (!looping) {
 				clearTimeout(timeoutId);
@@ -38,6 +39,19 @@ const Home = ({ navigation }) => {
 			setResult('END');
 		}
 	}, [gameOver]);
+
+	const setFirstValues = () => {
+		StorageService.retrieveData('speed').then(s => {
+			if (s === undefined || s === '') {
+				StorageService.storeData('speed', '6');
+			}
+		});
+		StorageService.retrieveData('rate').then(r => {
+			if (r === undefined || r === '') {
+				StorageService.storeData('rate', '1');
+			}
+		});
+	};
 
 	const goTo = page => {
 		navigation.navigate(page);
