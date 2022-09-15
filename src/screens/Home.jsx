@@ -21,11 +21,12 @@ const Home = ({ navigation }) => {
 	const isInitialMount = useRef(true);
 
 	useEffect(() => {
-		StorageService.retrieveData('speed').then(s => setSeconds(s | 6));
+		StorageService.retrieveData('speed').then(s =>
+			parseFloat(setSeconds(s | '6')),
+		);
 		if (isInitialMount.current) {
 			isInitialMount.current = false;
 			SpeechService.speak('');
-			setFirstValues();
 		} else {
 			if (!looping) {
 				clearTimeout(timeoutId);
@@ -39,15 +40,6 @@ const Home = ({ navigation }) => {
 			setResult('END');
 		}
 	}, [gameOver]);
-
-	const setFirstValues = () => {
-		StorageService.retrieveData('speed').then(s => {
-			if (s === undefined || s === '') {
-				StorageService.storeData('speed', '6');
-				StorageService.storeData('rate', '1');
-			}
-		});
-	};
 
 	const goTo = page => {
 		navigation.navigate(page);
