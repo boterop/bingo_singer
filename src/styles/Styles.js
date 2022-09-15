@@ -35,10 +35,13 @@ const Styles = StyleSheet.create({
 		paddingHorizontal: 10,
 	},
 	lastNumbers: {
-		flex: 0.3,
-		alignItems: 'center',
+		flexGrow: 1,
 		justifyContent: 'center',
-		backgroundColor: "#00ffff"
+	},
+	lastNumber: {
+		fontSize: 16,
+		fontWeight: 'bold',
+		color: '#555555'
 	},
 	configBox: {
 		paddingVertical: 20,

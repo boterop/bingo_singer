@@ -72,7 +72,7 @@ const Home = ({ navigation }) => {
 		const update = done;
 		const updatedLastResults = lastResults;
 		updatedLastResults.unshift(key + '-' + value);
-		if (updatedLastResults.length > 4) {
+		if (updatedLastResults.length > 5) {
 			updatedLastResults.pop();
 		}
 		if (done[key] === undefined) {
@@ -110,11 +110,14 @@ const Home = ({ navigation }) => {
 		<View style={Styles.inline}>
 			<StatusBar hidden />
 			<View style={Styles.table}>{table}</View>
-			<View style={Styles.lastNumbers}>
+			<View>
 				<FlatList
+					contentContainerStyle={Styles.lastNumbers}
 					data={lastResults}
 					keyExtractor={({ id }) => id}
-					renderItem={({ item }) => <Text>{item}</Text>}
+					renderItem={({ index, item }) =>
+						index !== 0 ? <Text style={Styles.lastNumber}>{item}</Text> : null
+					}
 				/>
 			</View>
 			<View style={Styles.container}>
