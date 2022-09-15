@@ -24,7 +24,7 @@ const Home = ({ navigation }) => {
 
 	useEffect(() => {
 		StorageService.retrieveData('speed').then(s =>
-			parseFloat(setSeconds(s | '6')),
+			setSeconds(parseFloat(s === null || s === undefined ? '6' : s)),
 		);
 		if (isInitialMount.current) {
 			isInitialMount.current = false;
@@ -42,10 +42,6 @@ const Home = ({ navigation }) => {
 			setResult('END');
 		}
 	}, [gameOver]);
-
-	const goTo = page => {
-		navigation.navigate(page);
-	};
 
 	const start = () => {
 		if (looping && !gameOver) {
