@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, StatusBar, Button, Pressable } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
 import { Table } from '../components';
 import {
 	BoardService,
@@ -17,6 +18,7 @@ const Home = ({ navigation }) => {
 	const [table, setTable] = useState(null);
 	const [timeoutId, setTimeoutId] = useState(null);
 	const [seconds, setSeconds] = useState(6);
+	const [lastResults, setLastResults] = useState([]);
 
 	const isInitialMount = useRef(true);
 
@@ -66,16 +68,23 @@ const Home = ({ navigation }) => {
 		setDone({});
 		setTable(null);
 		setTimeoutId(null);
+		setLastResults([]);
 	};
 
 	const addDone = (key, value) => {
 		const update = done;
+		const updatedLastResults = lastResults;
+		updatedLastResults.unshift(key + '-' + value);
+		if (updatedLastResults.length > 5) {
+			updatedLastResults.pop();
+		}
 		if (done[key] === undefined) {
 			update[key] = [value];
 		} else {
 			update[key].push(value);
 		}
 		setDone(update);
+		setLastResults(updatedLastResults);
 	};
 
 	const isValid = (key, value) =>
@@ -102,9 +111,19 @@ const Home = ({ navigation }) => {
 
 	return (
 		<View style={Styles.inline}>
+			<StatusBar hidden />
 			<View style={Styles.table}>{table}</View>
+			<View>
+				<FlatList
+					contentContainerStyle={Styles.lastNumbers}
+					data={lastResults}
+					keyExtractor={({ id }) => id}
+					renderItem={({ index, item }) =>
+						index !== 0 ? <Text style={Styles.lastNumber}>{item}</Text> : null
+					}
+				/>
+			</View>
 			<View style={Styles.container}>
-				<StatusBar hidden />
 				<View>
 					<Pressable style={Styles.resetButton} onPress={() => reset()}>
 						<Text style={Styles.resetButtonText}>RESET</Text>
