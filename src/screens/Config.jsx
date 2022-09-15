@@ -19,17 +19,27 @@ const Config = props => {
 				setRate(r === null || r === undefined ? '1' : r),
 			);
 		} else {
-			const s = speed === '' ? '6' : speed.toString();
-			const r = rate === '' ? '1' : rate.toString();
-			StorageService.storeData('speed', s);
-			StorageService.storeData('rate', r);
+			StorageService.storeData('speed', speed.toString());
+			StorageService.storeData('rate', rate.toString());
 		}
 	}, [speed, rate]);
 
 	return (
 		<View style={Styles.container}>
-			<ConfigIo title='Game speed:' speed={speed} setSpeed={setSpeed} />
-			<ConfigIo title='Voice speed:' speed={rate} setSpeed={setRate} />
+			<ConfigIo
+				title='Game speed:'
+				steps={0.2}
+				maxValue={15}
+				value={speed}
+				setValue={setSpeed}
+			/>
+			<ConfigIo
+				title='Voice speed:'
+				steps={0.1}
+				maxValue={2}
+				value={rate}
+				setValue={setRate}
+			/>
 		</View>
 	);
 };

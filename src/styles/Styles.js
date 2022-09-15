@@ -58,14 +58,8 @@ const Styles = StyleSheet.create({
 		borderWidth: 1,
 	},
 	configIo: {
-		height: 20,
-		marginHorizontal: 10,
-		marginVertical: 5,
-		alignSelf: 'flex-end',
-		paddingHorizontal: 10,
-		borderColor: 'black',
-		borderWidth: 1,
-		backgroundColor: '#ffff',
+		width: 200,
+		height: 40,
 	},
 	configText: {
 		alignSelf: 'baseline',
