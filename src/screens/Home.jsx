@@ -66,6 +66,7 @@ const Home = ({ navigation }) => {
 		setDone({});
 		setTable(null);
 		setTimeoutId(null);
+		setLastResults([]);
 	};
 
 	const addDone = (key, value) => {
