@@ -34,6 +34,15 @@ const Styles = StyleSheet.create({
 		justifyContent: 'center',
 		paddingHorizontal: 10,
 	},
+	lastNumbers: {
+		flexGrow: 1,
+		justifyContent: 'center',
+	},
+	lastNumber: {
+		fontSize: 16,
+		fontWeight: 'bold',
+		color: '#555555',
+	},
 	configBox: {
 		paddingVertical: 20,
 		alignSelf: 'stretch',
