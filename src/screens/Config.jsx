@@ -12,8 +12,12 @@ const Config = props => {
 	useEffect(() => {
 		if (isInitialMount.current) {
 			isInitialMount.current = false;
-			StorageService.retrieveData('speed').then(s => setSpeed(s === null || s === undefined ? '6' : s));
-			StorageService.retrieveData('rate').then(r => setRate(r === null || r === undefined ? '1' : r));
+			StorageService.retrieveData('speed').then(s =>
+				setSpeed(s === null || s === undefined ? '6' : s),
+			);
+			StorageService.retrieveData('rate').then(r =>
+				setRate(r === null || r === undefined ? '1' : r),
+			);
 		} else {
 			const s = speed === '' ? '6' : speed.toString();
 			const r = rate === '' ? '1' : rate.toString();
