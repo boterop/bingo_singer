@@ -41,7 +41,7 @@ const Styles = StyleSheet.create({
 	lastNumber: {
 		fontSize: 16,
 		fontWeight: 'bold',
-		color: '#555555'
+		color: '#555555',
 	},
 	configBox: {
 		paddingVertical: 20,
