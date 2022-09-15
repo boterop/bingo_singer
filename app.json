@@ -2,7 +2,7 @@
   "expo": {
     "name": "Bingo Singer",
     "slug": "bingo_singer",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "orientation": "landscape",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -21,7 +21,7 @@
       "supportsTablet": true
     },
     "android": {
-      "versionCode": 4,
+      "versionCode": 5,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"

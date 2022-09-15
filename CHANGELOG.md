@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.1 (15.09.2022)
+
+* Fix bug when opening the app the first time and the game is fast
+* Clean the list of the last numbers when restarting
+* Changed config inputs to sliders
+
 ## 0.3.0 (14.09.2022)
 
 * Show the last 3 numbers
