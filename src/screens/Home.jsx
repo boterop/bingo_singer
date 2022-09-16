@@ -23,7 +23,9 @@ const Home = ({ navigation }) => {
 	const isInitialMount = useRef(true);
 
 	useEffect(() => {
-		StorageService.retrieveData('speed').then(s => setSeconds(s));
+		StorageService.retrieveData('speed').then(s =>
+			setSeconds(parseFloat(s === null || s === undefined ? '6' : s)),
+		);
 		if (isInitialMount.current) {
 			isInitialMount.current = false;
 			SpeechService.speak('');
@@ -40,10 +42,6 @@ const Home = ({ navigation }) => {
 			setResult('END');
 		}
 	}, [gameOver]);
-
-	const goTo = page => {
-		navigation.navigate(page);
-	};
 
 	const start = () => {
 		if (looping && !gameOver) {
@@ -66,6 +64,7 @@ const Home = ({ navigation }) => {
 		setDone({});
 		setTable(null);
 		setTimeoutId(null);
+		setLastResults([]);
 	};
 
 	const addDone = (key, value) => {

@@ -12,21 +12,34 @@ const Config = props => {
 	useEffect(() => {
 		if (isInitialMount.current) {
 			isInitialMount.current = false;
-			StorageService.retrieveData('speed').then(s => setSpeed(s));
-			StorageService.retrieveData('rate').then(r => setRate(r));
+			StorageService.retrieveData('speed').then(s =>
+				setSpeed(s === null || s === undefined ? '6' : s),
+			);
+			StorageService.retrieveData('rate').then(r =>
+				setRate(r === null || r === undefined ? '1' : r),
+			);
 		} else {
-			const s =
-				speed === undefined ? '6' : speed === '' ? '6' : speed.toString();
-			const r = rate === undefined ? '1' : rate === '' ? '1' : rate.toString();
-			StorageService.storeData('speed', s);
-			StorageService.storeData('rate', r);
+			StorageService.storeData('speed', speed.toString());
+			StorageService.storeData('rate', rate.toString());
 		}
 	}, [speed, rate]);
 
 	return (
 		<View style={Styles.container}>
-			<ConfigIo title='Game speed:' speed={speed} setSpeed={setSpeed} />
-			<ConfigIo title='Voice speed:' speed={rate} setSpeed={setRate} />
+			<ConfigIo
+				title='Game speed:'
+				steps={0.2}
+				maxValue={15}
+				value={speed}
+				setValue={setSpeed}
+			/>
+			<ConfigIo
+				title='Voice speed:'
+				steps={0.1}
+				maxValue={2}
+				value={rate}
+				setValue={setRate}
+			/>
 		</View>
 	);
 };
