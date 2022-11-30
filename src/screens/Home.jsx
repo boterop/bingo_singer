@@ -23,16 +23,18 @@ const Home = ({ navigation }) => {
 	const isInitialMount = useRef(true);
 
 	useEffect(() => {
-		StorageService.retrieveData('speed').then(s =>
-			setSeconds(parseFloat(s === null || s === undefined ? '6' : s)),
-		);
 		if (isInitialMount.current) {
 			isInitialMount.current = false;
 			SpeechService.speak('');
+
+			setSeconds('1');
 		} else {
 			if (!looping) {
 				clearTimeout(timeoutId);
 			}
+			StorageService.retrieveData('speed').then(s =>
+				setSeconds(parseFloat(s === null || s === undefined ? '6' : s)),
+			);
 			setTimeoutId(setTimeout(() => start(), seconds * 1000));
 		}
 	}, [looping, result]);
