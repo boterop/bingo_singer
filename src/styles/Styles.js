@@ -69,6 +69,12 @@ const Styles = StyleSheet.create({
 	configInline: {
 		flexDirection: 'row',
 	},
+	configIcon: {
+		width: 30,
+		height: 30,
+		marginRight: 15,
+		marginTop: 15,
+	},
 });
 
 export default Styles;

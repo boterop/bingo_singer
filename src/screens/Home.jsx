@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, StatusBar, Button, Pressable } from 'react-native';
+import { View, Text, StatusBar, Button, Pressable, Image } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { Table } from '../components';
 import {
@@ -105,6 +105,10 @@ const Home = ({ navigation }) => {
 		}
 	};
 
+	const openConfigView = () => {
+		navigation.navigate('config');
+	};
+
 	return (
 		<View style={Styles.inline}>
 			<StatusBar hidden />
@@ -131,6 +135,12 @@ const Home = ({ navigation }) => {
 					/>
 				</View>
 			</View>
+			<Pressable onPress={() => openConfigView()}>
+				<Image
+					style={Styles.configIcon}
+					source={require('../../assets/icons/gear-option.png')}
+				/>
+			</Pressable>
 		</View>
 	);
 };
