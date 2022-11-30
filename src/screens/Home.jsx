@@ -55,6 +55,7 @@ const Home = ({ navigation }) => {
 					letters={BoardService.getLetters()}
 				/>,
 			);
+			SpeechService.speak('');
 			SpeechService.speak(result);
 		}
 	};
