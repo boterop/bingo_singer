@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View } from 'react-native';
+import { Button, View } from 'react-native';
 import { Styles } from '../styles';
 import { StorageService } from '../services';
 import { ConfigIo } from '../components';
@@ -13,16 +13,21 @@ const Config = props => {
 		if (isInitialMount.current) {
 			isInitialMount.current = false;
 			StorageService.retrieveData('speed').then(s =>
-				setSpeed(s === null || s === undefined ? '6' : s),
+				setSpeed(s === null || s === undefined ? 6 : s),
 			);
 			StorageService.retrieveData('rate').then(r =>
-				setRate(r === null || r === undefined ? '1' : r),
+				setRate(r === null || r === undefined ? 1 : r),
 			);
 		} else {
 			StorageService.storeData('speed', speed.toString());
 			StorageService.storeData('rate', rate.toString());
 		}
 	}, [speed, rate]);
+
+	const setDefault = () => {
+		setSpeed(6);
+		setRate(1);
+	};
 
 	return (
 		<View style={Styles.container}>
@@ -40,6 +45,7 @@ const Config = props => {
 				value={rate}
 				setValue={setRate}
 			/>
+			<Button onPress={() => setDefault()} title='Default' />
 		</View>
 	);
 };
