@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, StatusBar, Button, Pressable } from 'react-native';
+import { View, Text, StatusBar, Button, Pressable, Image } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { Table } from '../components';
 import {
@@ -23,16 +23,18 @@ const Home = ({ navigation }) => {
 	const isInitialMount = useRef(true);
 
 	useEffect(() => {
-		StorageService.retrieveData('speed').then(s =>
-			setSeconds(parseFloat(s === null || s === undefined ? '6' : s)),
-		);
 		if (isInitialMount.current) {
 			isInitialMount.current = false;
 			SpeechService.speak('');
+
+			setSeconds('1');
 		} else {
 			if (!looping) {
 				clearTimeout(timeoutId);
 			}
+			StorageService.retrieveData('speed').then(s =>
+				setSeconds(parseFloat(s === null || s === undefined ? '6' : s)),
+			);
 			setTimeoutId(setTimeout(() => start(), seconds * 1000));
 		}
 	}, [looping, result]);
@@ -53,6 +55,7 @@ const Home = ({ navigation }) => {
 					letters={BoardService.getLetters()}
 				/>,
 			);
+			SpeechService.speak('');
 			SpeechService.speak(result);
 		}
 	};
@@ -105,6 +108,10 @@ const Home = ({ navigation }) => {
 		}
 	};
 
+	const openConfigView = () => {
+		navigation.navigate('config');
+	};
+
 	return (
 		<View style={Styles.inline}>
 			<StatusBar hidden />
@@ -131,6 +138,12 @@ const Home = ({ navigation }) => {
 					/>
 				</View>
 			</View>
+			<Pressable onPress={() => openConfigView()}>
+				<Image
+					style={Styles.configIcon}
+					source={require('../../assets/icons/gear-option.png')}
+				/>
+			</Pressable>
 		</View>
 	);
 };
